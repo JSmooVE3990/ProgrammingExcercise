@@ -1,4 +1,4 @@
-package com.example.programmingexcercise.products;
+package com.example.programmingexercise.products;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import lombok.Setter;
 @Table(name = "products")
 public class Product {
 
-    // Getters and Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +20,6 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
-    // Constructors, getters, and setters
     public Product() {}
 
     public Product(String name, double price) {
