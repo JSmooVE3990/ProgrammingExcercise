@@ -33,7 +33,7 @@ public class ProductControllerIntegrationTest {
     @Test
     public void createProduct() throws Exception {
         Product product1 = new Product();
-        product1.setId(1l);
+        product1.setId(1L);
         product1.setPrice(5.0);
         product1.setName("Test Product");
         String productJson = objectMapper.writeValueAsString(product1);

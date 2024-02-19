@@ -10,9 +10,11 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
+    private final ProductRepository productRepository;
     @Autowired
-    private ProductRepository productRepository;
-
+    public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
@@ -31,12 +33,10 @@ public class ProductService {
             Product existingProduct = productOptional.get();
             existingProduct.setName(newProductData.getName());
             existingProduct.setPrice(newProductData.getPrice());
-            // Set other fields as needed
-
             Product updatedProduct = productRepository.save(existingProduct);
             return Optional.of(updatedProduct);
         } else {
-            return Optional.empty(); // Product with the given ID not found
+            return Optional.empty();
         }
     }
 
