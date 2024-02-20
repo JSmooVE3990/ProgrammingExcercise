@@ -1,4 +1,4 @@
-package com.example.programmingexercise.product;
+package com.example.programmingexercise.order;
 
 import com.example.programmingexercise.products.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -17,31 +18,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ProductControllerIntegrationTest {
-
+public class OrderControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
-    public void getAllProducts() throws Exception {
-        mockMvc.perform(get("/api/products"))
+    public void getAllOrders() throws Exception {
+        mockMvc.perform(get("/api/orders"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void createProduct() throws Exception {
-        Product product1 = new Product();
-        product1.setId(1L);
-        product1.setPrice(5.0);
-        product1.setName("Test Product");
-        String productJson = objectMapper.writeValueAsString(product1);
-        mockMvc.perform(post("/api/products")
+    public void createOrder() throws Exception {
+        Order order1 = new Order();
+        order1.setId(1L);
+
+        String orderJson = objectMapper.writeValueAsString(order1);
+        mockMvc.perform(post("/api/orders")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(productJson))
+                        .content(orderJson))
                 .andExpect(status().isCreated()) // Expect HTTP 201 Created status
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists()); // Expect the response to contain the ID of the created product
+
     }
 }

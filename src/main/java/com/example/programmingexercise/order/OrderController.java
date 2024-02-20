@@ -22,6 +22,9 @@ public class OrderController {
     @Operation(summary = "Get a list of all orders ")
     @GetMapping
     public List<Order> getAllOrders() {
+        for(Order order:orderService.getAllOrders()){
+            System.out.println(order.getId());
+        }
         return orderService.getAllOrders();
     }
 
@@ -31,7 +34,8 @@ public class OrderController {
         Order createdOrder = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
     }
-    @Operation(summary = "Get a order by ID")
+
+    @Operation(summary = "Get an order by ID")
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Optional<Order> order = Optional.ofNullable(orderService.getOrderById(id));
@@ -44,7 +48,8 @@ public class OrderController {
         Optional<Order> updatedOrder = orderService.updateOrder(id, order);
         return updatedOrder.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
-    @Operation(summary = "Delete a order by ID")
+
+    @Operation(summary = "Delete an order by ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         boolean deleted = orderService.deleteOrder(id);

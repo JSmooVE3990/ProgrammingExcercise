@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/orderItems")
 public class OrderItemController {
+
     private final OrderItemService orderItemService;
 
     @Autowired
@@ -39,7 +40,7 @@ public class OrderItemController {
     }
 
     @Operation(summary = "Update an existing orderItem")
-    @PutMapping("/{id}")
+    @PutMapping("//{id}")
     public ResponseEntity<OrderItem> updateOrderItem(@PathVariable Long id, @RequestBody OrderItem orderItem) {
         Optional<OrderItem> updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
         return updatedOrderItem.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
