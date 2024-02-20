@@ -26,7 +26,7 @@ public class OrderItemControllerIntegrationTest {
 
     @Test
     public void getAllOrderItems() throws Exception {
-        mockMvc.perform(get("/api/orderItems"))
+        mockMvc.perform(get("/api/orderitems"))
                 .andExpect(status().isOk());
     }
 
@@ -35,7 +35,7 @@ public class OrderItemControllerIntegrationTest {
         OrderItem orderItem1 = new OrderItem();
         orderItem1.setId(1L);
         String orderItemJson = objectMapper.writeValueAsString(orderItem1);
-        mockMvc.perform(post("/api/orderItems")
+        mockMvc.perform(post("/api/orderitems")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(orderItemJson))
                 .andExpect(status().isCreated()) // Expect HTTP 201 Created status

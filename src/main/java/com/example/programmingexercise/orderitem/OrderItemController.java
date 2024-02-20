@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/orderItems")
+@RequestMapping("/api/orderitems")
 public class OrderItemController {
 
     private final OrderItemService orderItemService;
@@ -20,7 +20,7 @@ public class OrderItemController {
         this.orderItemService = orderItemService;
     }
 
-    @Operation(summary = "Get a list of all orderItems ")
+    @Operation(summary = "Get a list of all orderitems ")
     @GetMapping
     public List<OrderItem> getAllOrderItems() {
         return orderItemService.getAllOrderItems();
