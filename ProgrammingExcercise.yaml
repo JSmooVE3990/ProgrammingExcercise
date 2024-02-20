@@ -4,24 +4,24 @@ info:
   title: OpenAPI definition
   version: v1
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+  - url: http://localhost:8080
+    description: Generated server url
 paths:
   /api/products/{id}:
     get:
       tags:
-      - product-controller
+        - product-controller
       summary: Get a product by ID
       operationId: getProductById
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
@@ -31,18 +31,18 @@ paths:
                 $ref: '#/components/schemas/Product'
     put:
       tags:
-      - product-controller
+        - product-controller
       summary: Update an existing product
       operationId: updateProduct
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -58,35 +58,35 @@ paths:
                 $ref: '#/components/schemas/Product'
     delete:
       tags:
-      - product-controller
+        - product-controller
       summary: Delete a product by ID
       operationId: deleteProduct
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
   /api/orders/{id}:
     get:
       tags:
-      - order-controller
+        - order-controller
       summary: Get an order by ID
       operationId: getOrderById
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -96,18 +96,18 @@ paths:
                 $ref: '#/components/schemas/Order'
     put:
       tags:
-      - order-controller
+        - order-controller
       summary: Update an existing order
       operationId: updateOrder
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -123,36 +123,36 @@ paths:
                 $ref: '#/components/schemas/Order'
     delete:
       tags:
-      - order-controller
+        - order-controller
       summary: Delete an order by ID
       operationId: deleteOrder
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
   /api/orderitems/{id}:
     get:
       tags:
-      - order-item-controller
+        - order-item-controller
       summary: Get a orderItem by ID
       operationId: getOrderItemById
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
@@ -162,18 +162,18 @@ paths:
                 $ref: '#/components/schemas/OrderItem'
     put:
       tags:
-      - order-item-controller
+        - order-item-controller
       summary: Update an existing orderItem
       operationId: updateOrderItem
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -189,25 +189,25 @@ paths:
                 $ref: '#/components/schemas/OrderItem'
     delete:
       tags:
-      - order-item-controller
+        - order-item-controller
       summary: Delete a orderItem by ID
       operationId: deleteOrderItem
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
   /api/products:
     get:
       tags:
-      - product-controller
+        - product-controller
       summary: Get a list of all products
       operationId: getAllProducts
       responses:
@@ -221,7 +221,7 @@ paths:
                   $ref: '#/components/schemas/Product'
     post:
       tags:
-      - product-controller
+        - product-controller
       summary: Create a new product
       operationId: createProduct
       requestBody:
@@ -240,7 +240,7 @@ paths:
   /api/orders:
     get:
       tags:
-      - order-controller
+        - order-controller
       summary: 'Get a list of all orders '
       operationId: getAllOrders
       responses:
@@ -254,7 +254,7 @@ paths:
                   $ref: '#/components/schemas/Order'
     post:
       tags:
-      - order-controller
+        - order-controller
       summary: Create a new order
       operationId: createOrder
       requestBody:
@@ -273,7 +273,7 @@ paths:
   /api/orderitems:
     get:
       tags:
-      - order-item-controller
+        - order-item-controller
       summary: 'Get a list of all orderitems '
       operationId: getAllOrderItems
       responses:
@@ -287,7 +287,7 @@ paths:
                   $ref: '#/components/schemas/OrderItem'
     post:
       tags:
-      - order-item-controller
+        - order-item-controller
       summary: Create a new orderItem
       operationId: createOrderItem
       requestBody:

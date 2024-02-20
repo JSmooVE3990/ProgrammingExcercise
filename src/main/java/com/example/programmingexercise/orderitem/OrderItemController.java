@@ -35,22 +35,22 @@ public class OrderItemController {
 
     @Operation(summary = "Get a orderItem by ID")
     @GetMapping("/{id}")
-    public ResponseEntity<OrderItem> getOrderItemById(@PathVariable Long id) {
-        Optional<OrderItem> orderItem = orderItemService.getOrderItemById(id);
+    public ResponseEntity<OrderItem> getOrderItemById(@PathVariable String id) {
+        Optional<OrderItem> orderItem = orderItemService.getOrderItemById(Long.parseLong(id));
         return orderItem.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Update an existing orderItem")
-    @PutMapping("//{id}")
-    public ResponseEntity<OrderItem> updateOrderItem(@PathVariable Long id, @RequestBody OrderItem orderItem) {
-        Optional<OrderItem> updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
+    @PutMapping("/{id}")
+    public ResponseEntity<OrderItem> updateOrderItem(@PathVariable String id, @RequestBody OrderItem orderItem) {
+        Optional<OrderItem> updatedOrderItem = orderItemService.updateOrderItem(Long.parseLong(id), orderItem);
         return updatedOrderItem.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Delete a orderItem by ID")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrderItem(@PathVariable Long id) {
-        boolean deleted = orderItemService.deleteOrderItem(id);
+    public ResponseEntity<Void> deleteOrderItem(@PathVariable String id) {
+        boolean deleted = orderItemService.deleteOrderItem(Long.parseLong(id));
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

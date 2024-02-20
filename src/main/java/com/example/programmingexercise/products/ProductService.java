@@ -21,6 +21,7 @@ public class ProductService {
     }
 
     public Optional<Product> getProductById(Long id) {
+        System.out.println(id);
         return productRepository.findById(id);
     }
 

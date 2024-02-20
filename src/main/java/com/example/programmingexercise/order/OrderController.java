@@ -44,15 +44,15 @@ public class OrderController {
 
     @Operation(summary = "Update an existing order")
     @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
-        Optional<Order> updatedOrder = orderService.updateOrder(id, order);
+    public ResponseEntity<Order> updateOrder(@PathVariable String id, @RequestBody Order order) {
+        Optional<Order> updatedOrder = orderService.updateOrder(Long.parseLong(id), order);
         return updatedOrder.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Delete an order by ID")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        boolean deleted = orderService.deleteOrder(id);
+    public ResponseEntity<Void> deleteOrder(@PathVariable String id) {
+        boolean deleted = orderService.deleteOrder(Long.parseLong(id));
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
