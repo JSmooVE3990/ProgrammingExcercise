@@ -9,15 +9,18 @@ import java.util.Optional;
 @Service
 public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
+
     @Autowired
-    public OrderItemService(OrderItemRepository orderItemRepository){
+    public OrderItemService(OrderItemRepository orderItemRepository) {
         this.orderItemRepository = orderItemRepository;
     }
+
     public List<OrderItem> getAllOrderItems() {
         return orderItemRepository.findAll();
     }
-    public OrderItem getOrderItemById(Long id) {
-        return orderItemRepository.getReferenceById(id);
+
+    public Optional<OrderItem> getOrderItemById(Long id) {
+        return orderItemRepository.findById(id);
     }
 
     public OrderItem createOrderItem(OrderItem orderItem) {
@@ -28,7 +31,8 @@ public class OrderItemService {
         Optional<OrderItem> orderItemOptional = orderItemRepository.findById(id);
 
         if (orderItemOptional.isPresent()) {
-            OrderItem existingOrderItem = orderItemOptional.get();;
+            OrderItem existingOrderItem = orderItemOptional.get();
+            ;
             OrderItem updatedOrderItem = orderItemRepository.save(existingOrderItem);
             return Optional.of(updatedOrderItem);
         } else {

@@ -15,14 +15,14 @@ public class OrderController {
     private final OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService){
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
     @Operation(summary = "Get a list of all orders ")
     @GetMapping
     public List<Order> getAllOrders() {
-        for(Order order:orderService.getAllOrders()){
+        for (Order order : orderService.getAllOrders()) {
             System.out.println(order.getId());
         }
         return orderService.getAllOrders();
@@ -30,15 +30,15 @@ public class OrderController {
 
     @Operation(summary = "Create a new order")
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         Order createdOrder = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
     }
 
     @Operation(summary = "Get an order by ID")
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Optional<Order> order = Optional.ofNullable(orderService.getOrderById(id));
+    public ResponseEntity<Order> getOrderById(@PathVariable String id) {
+        Optional<Order> order = orderService.getOrderById(Long.parseLong(id));
         return order.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 

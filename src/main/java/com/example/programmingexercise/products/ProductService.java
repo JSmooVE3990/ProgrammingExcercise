@@ -2,7 +2,6 @@ package com.example.programmingexercise.products;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,15 +10,18 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+
     @Autowired
-    public ProductService(ProductRepository productRepository){
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-    public Product getProductById(Long id) {
-        return productRepository.getReferenceById(id);
+
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id);
     }
 
     public Product createProduct(Product product) {

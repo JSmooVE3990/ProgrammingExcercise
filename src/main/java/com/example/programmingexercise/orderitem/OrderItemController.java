@@ -16,7 +16,7 @@ public class OrderItemController {
     private final OrderItemService orderItemService;
 
     @Autowired
-    public OrderItemController(OrderItemService orderItemService){
+    public OrderItemController(OrderItemService orderItemService) {
         this.orderItemService = orderItemService;
     }
 
@@ -28,14 +28,15 @@ public class OrderItemController {
 
     @Operation(summary = "Create a new orderItem")
     @PostMapping
-    public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem orderItem){
+    public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem orderItem) {
         OrderItem createdOrderItem = orderItemService.createOrderItem(orderItem);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrderItem);
     }
+
     @Operation(summary = "Get a orderItem by ID")
     @GetMapping("/{id}")
     public ResponseEntity<OrderItem> getOrderItemById(@PathVariable Long id) {
-        Optional<OrderItem> orderItem = Optional.ofNullable(orderItemService.getOrderItemById(id));
+        Optional<OrderItem> orderItem = orderItemService.getOrderItemById(id);
         return orderItem.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -45,6 +46,7 @@ public class OrderItemController {
         Optional<OrderItem> updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
         return updatedOrderItem.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
     @Operation(summary = "Delete a orderItem by ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrderItem(@PathVariable Long id) {

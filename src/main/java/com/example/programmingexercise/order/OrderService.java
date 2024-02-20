@@ -9,15 +9,18 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+
     @Autowired
-    public OrderService(OrderRepository orderRepository){
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
+
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
-    public Order getOrderById(Long id) {
-        return orderRepository.getReferenceById(id);
+
+    public Optional<Order> getOrderById(Long id) {
+        return orderRepository.findById(id);
     }
 
     public Order createOrder(Order order) {
@@ -28,7 +31,8 @@ public class OrderService {
         Optional<Order> orderOptional = orderRepository.findById(id);
 
         if (orderOptional.isPresent()) {
-            Order existingOrder = orderOptional.get();;
+            Order existingOrder = orderOptional.get();
+            ;
             Order updatedOrder = orderRepository.save(existingOrder);
             return Optional.of(updatedOrder);
         } else {

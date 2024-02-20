@@ -36,7 +36,7 @@ public class ProductController {
     @Operation(summary = "Get a product by ID")
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = Optional.ofNullable(productService.getProductById(id));
+        Optional<Product> product = productService.getProductById(id);
         return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -46,6 +46,7 @@ public class ProductController {
         Optional<Product> updatedProduct = productService.updateProduct(id, product);
         return updatedProduct.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
     @Operation(summary = "Delete a product by ID")
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
