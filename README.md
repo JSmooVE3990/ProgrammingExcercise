@@ -66,10 +66,10 @@ This project is a Spring Boot application that provides RESTful APIs for managin
 - **GET /api/orderitems/{id}**: Get an order by ID.
 - **PUT /api/orderitems/{id}**: Update an existing order.
 - **DELETE /api/orderitems/{id}**: Delete an order by ID.
-- 
+
 ## Testing
 
 To run tests, execute:
 
 ```bash
-mvn test
+mvn verify
