@@ -1,5 +1,6 @@
 package com.example.programmingexercise.order;
 
+import com.example.programmingexercise.orderitem.OrderItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +28,8 @@ public class OrderControllerIntegrationTest {
     private OrderController orderController;
     @Autowired
     private ObjectMapper objectMapper;
-
+    @Autowired
+    OrderItemService orderItemService;
     @Test
     public void getAllOrders() throws Exception {
         mockMvc.perform(get("/api/orders"))
@@ -38,7 +40,6 @@ public class OrderControllerIntegrationTest {
     public void createOrder() throws Exception {
         Order order1 = new Order();
         order1.setId(1L);
-
         String orderJson = objectMapper.writeValueAsString(order1);
         mockMvc.perform(post("/api/orders")
                         .contentType(MediaType.APPLICATION_JSON)
