@@ -1,7 +1,6 @@
-package com.example.programmingexercise;
+package com.example.programmingexercise.practicequestions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class UniqueCharacters {
         String[] sample = {"aaryanna", "aayanna", "airianna", "alassandra", "allanna", "allannah", "allessandra", "allianna",
                 "allyanna", "anastaisa", "anastashia", "anastasia", "annabella", "annabelle", "annebelle"};
 
-        List<String> doubleANames = new ArrayList<String>();
+        List<String> doubleANames = new ArrayList<>();
         for(String name: sample){
             if(name.contains("aa")){
                 doubleANames.add(name);
